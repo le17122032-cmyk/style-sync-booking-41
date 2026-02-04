@@ -2,30 +2,42 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
-import { Clock, ArrowRight, Search, Scissors, Sparkles, Heart, Star } from "lucide-react";
+import { Clock, ArrowRight, Search, Scissors, Sparkles, Heart, Star, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 const categories = [
   { id: "all", name: "Todos", icon: Sparkles },
+  { id: "barber", name: "Barbería", icon: User },
   { id: "hair", name: "Cabello", icon: Scissors },
   { id: "nails", name: "Uñas", icon: Heart },
   { id: "spa", name: "Spa", icon: Star },
 ];
 
 const services = [
-  { id: 1, name: "Corte de cabello", category: "hair", duration: "45 min", price: 350, popular: true },
-  { id: 2, name: "Tinte completo", category: "hair", duration: "2 hrs", price: 800, popular: true },
-  { id: 3, name: "Mechas/Balayage", category: "hair", duration: "3 hrs", price: 1200, popular: false },
-  { id: 4, name: "Brushing", category: "hair", duration: "30 min", price: 200, popular: false },
-  { id: 5, name: "Tratamiento capilar", category: "hair", duration: "1 hr", price: 450, popular: false },
-  { id: 6, name: "Manicure clásico", category: "nails", duration: "30 min", price: 180, popular: true },
-  { id: 7, name: "Manicure gel", category: "nails", duration: "45 min", price: 280, popular: false },
-  { id: 8, name: "Pedicure spa", category: "nails", duration: "1 hr", price: 320, popular: true },
-  { id: 9, name: "Uñas acrílicas", category: "nails", duration: "1.5 hrs", price: 500, popular: false },
-  { id: 10, name: "Masaje relajante", category: "spa", duration: "1 hr", price: 600, popular: true },
-  { id: 11, name: "Facial hidratante", category: "spa", duration: "1 hr", price: 550, popular: false },
-  { id: 12, name: "Exfoliación corporal", category: "spa", duration: "45 min", price: 400, popular: false },
+  // Barbería
+  { id: 1, name: "Corte clásico", category: "barber", duration: "30 min", price: 180, popular: true },
+  { id: 2, name: "Corte fade", category: "barber", duration: "45 min", price: 220, popular: true },
+  { id: 3, name: "Barba completa", category: "barber", duration: "30 min", price: 150, popular: true },
+  { id: 4, name: "Corte + Barba", category: "barber", duration: "1 hr", price: 320, popular: true },
+  { id: 5, name: "Diseño de cejas", category: "barber", duration: "15 min", price: 80, popular: false },
+  { id: 6, name: "Afeitado tradicional", category: "barber", duration: "30 min", price: 180, popular: false },
+  // Cabello
+  { id: 7, name: "Corte de cabello dama", category: "hair", duration: "45 min", price: 350, popular: true },
+  { id: 8, name: "Tinte completo", category: "hair", duration: "2 hrs", price: 800, popular: true },
+  { id: 9, name: "Mechas/Balayage", category: "hair", duration: "3 hrs", price: 1200, popular: false },
+  { id: 10, name: "Brushing", category: "hair", duration: "30 min", price: 200, popular: false },
+  { id: 11, name: "Tratamiento capilar", category: "hair", duration: "1 hr", price: 450, popular: false },
+  { id: 12, name: "Alisado keratina", category: "hair", duration: "3 hrs", price: 1500, popular: false },
+  // Uñas
+  { id: 13, name: "Manicure clásico", category: "nails", duration: "30 min", price: 180, popular: true },
+  { id: 14, name: "Manicure gel", category: "nails", duration: "45 min", price: 280, popular: false },
+  { id: 15, name: "Pedicure spa", category: "nails", duration: "1 hr", price: 320, popular: true },
+  { id: 16, name: "Uñas acrílicas", category: "nails", duration: "1.5 hrs", price: 500, popular: false },
+  // Spa
+  { id: 17, name: "Masaje relajante", category: "spa", duration: "1 hr", price: 600, popular: true },
+  { id: 18, name: "Facial hidratante", category: "spa", duration: "1 hr", price: 550, popular: false },
+  { id: 19, name: "Exfoliación corporal", category: "spa", duration: "45 min", price: 400, popular: false },
 ];
 
 const Services = () => {

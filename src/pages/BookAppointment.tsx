@@ -5,14 +5,20 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { Check, Clock, ChevronLeft, ChevronRight, Scissors, Sparkles, Heart, Star } from "lucide-react";
+import { Check, Clock, ChevronLeft, ChevronRight, Scissors, Sparkles, Heart, Star, User } from "lucide-react";
 
 const services = [
-  { id: 1, name: "Corte de cabello", category: "hair", duration: "45 min", price: 350, icon: Scissors },
-  { id: 2, name: "Tinte completo", category: "hair", duration: "2 hrs", price: 800, icon: Scissors },
-  { id: 6, name: "Manicure clásico", category: "nails", duration: "30 min", price: 180, icon: Heart },
+  // Barbería
+  { id: 1, name: "Corte clásico", category: "barber", duration: "30 min", price: 180, icon: User },
+  { id: 2, name: "Corte fade", category: "barber", duration: "45 min", price: 220, icon: User },
+  { id: 3, name: "Barba completa", category: "barber", duration: "30 min", price: 150, icon: User },
+  { id: 4, name: "Corte + Barba", category: "barber", duration: "1 hr", price: 320, icon: User },
+  // Salón
+  { id: 5, name: "Corte dama", category: "hair", duration: "45 min", price: 350, icon: Scissors },
+  { id: 6, name: "Tinte completo", category: "hair", duration: "2 hrs", price: 800, icon: Scissors },
+  { id: 7, name: "Manicure", category: "nails", duration: "30 min", price: 180, icon: Heart },
   { id: 8, name: "Pedicure spa", category: "nails", duration: "1 hr", price: 320, icon: Sparkles },
-  { id: 10, name: "Masaje relajante", category: "spa", duration: "1 hr", price: 600, icon: Star },
+  { id: 9, name: "Masaje", category: "spa", duration: "1 hr", price: 600, icon: Star },
 ];
 
 const timeSlots = [

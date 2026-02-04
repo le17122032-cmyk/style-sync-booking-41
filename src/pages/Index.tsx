@@ -23,9 +23,10 @@ const features = [
 ];
 
 const popularServices = [
-  { name: "Corte de cabello", duration: "45 min", price: "$350" },
-  { name: "Manicure", duration: "30 min", price: "$180" },
-  { name: "Pedicure", duration: "45 min", price: "$220" },
+  { name: "Corte fade", duration: "45 min", price: "$220", category: "Barbería" },
+  { name: "Corte + Barba", duration: "1 hr", price: "$320", category: "Barbería" },
+  { name: "Corte de cabello dama", duration: "45 min", price: "$350", category: "Salón" },
+  { name: "Manicure", duration: "30 min", price: "$180", category: "Salón" },
 ];
 
 const Index = () => {
@@ -44,14 +45,14 @@ const Index = () => {
           <div className="max-w-lg animate-slide-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-light text-gold mb-4">
               <Sparkles className="w-4 h-4" />
-              <span className="text-sm font-medium">Tu belleza, tu momento</span>
+              <span className="text-sm font-medium">Barbería & Salón de Belleza</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
-              Reserva tu cita de belleza al instante
+              Tu estilo perfecto, a un clic de distancia
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              StyleSync hace que agendar tu próxima cita sea tan fácil como un toque. 
-              Elige tu servicio, selecciona tu hora y listo.
+              StyleSync conecta barbería y salón de belleza en un solo lugar. 
+              Agenda tu corte, barba, tinte o tratamiento en segundos.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="hero" size="xl" asChild>
@@ -128,7 +129,12 @@ const Index = () => {
                 className="flex items-center justify-between bg-card rounded-xl p-4 border border-border hover:border-primary/30 hover:shadow-md transition-all duration-200"
               >
                 <div>
-                  <h4 className="font-medium text-foreground">{service.name}</h4>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h4 className="font-medium text-foreground">{service.name}</h4>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-secondary text-muted-foreground">
+                      {service.category}
+                    </span>
+                  </div>
                   <p className="text-sm text-muted-foreground flex items-center gap-1">
                     <Clock className="w-3 h-3" />
                     {service.duration}

@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project">
+    <title>StyleSync - Barbería & Salón de Belleza</title>
+    <meta name="description" content="Agenda tu cita en tu barbería y salón de belleza favorito. Reserva cortes, tintes, manicure y más.">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#d94a6b" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
     <meta name="author" content="Lovable" />
 
     <!-- TODO: Update og:title to match your application name -->
@@ -17,14 +19,23 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/80175756-b1b9-4a77-b234-488db32865ed/id-preview-56642440--9aa99d7e-9d09-482c-9ca2-dd9e416a6769.lovable.app-1770244046564.png">
-    <meta property="og:title" content="Lovable App">
-  <meta name="twitter:title" content="Lovable App">
-  <meta property="og:description" content="Lovable Generated Project">
-  <meta name="twitter:description" content="Lovable Generated Project">
+    <meta property="og:title" content="StyleSync - Barbería & Salón de Belleza">
+  <meta name="twitter:title" content="StyleSync - Barbería & Salón de Belleza">
+  <meta property="og:description" content="Agenda tu cita en tu barbería y salón de belleza favorito">
+  <meta name="twitter:description" content="Agenda tu cita en tu barbería y salón de belleza favorito">
 </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('[SW] Registered:', reg.scope))
+            .catch(err => console.log('[SW] Registration failed:', err));
+        });
+      }
+    </script>
   </body>
 </html>

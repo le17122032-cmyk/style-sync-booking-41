@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,23 +10,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { appointmentsDB, type DBAppointment } from "@/lib/indexedDB";
 
-interface Appointment {
-  id: number;
-  service: string;
-  date: string;
-  time: string;
-  status: "upcoming" | "completed" | "cancelled";
-  price: number;
-}
-
-const mockAppointments: Appointment[] = [
-  { id: 1, service: "Corte de cabello", date: "15 de Febrero, 2026", time: "10:00", status: "upcoming", price: 350 },
-  { id: 2, service: "Manicure gel", date: "18 de Febrero, 2026", time: "14:30", status: "upcoming", price: 280 },
-  { id: 3, service: "Tinte completo", date: "5 de Febrero, 2026", time: "11:00", status: "completed", price: 800 },
-  { id: 4, service: "Pedicure spa", date: "28 de Enero, 2026", time: "16:00", status: "completed", price: 320 },
-  { id: 5, service: "Masaje relajante", date: "20 de Enero, 2026", time: "12:00", status: "cancelled", price: 600 },
-];
+type Appointment = DBAppointment;
 
 const statusConfig = {
   upcoming: { label: "Próxima", className: "bg-gold-light text-gold" },
@@ -36,16 +22,23 @@ const statusConfig = {
 
 const MyAppointments = () => {
   const [filter, setFilter] = useState<"all" | "upcoming" | "completed" | "cancelled">("all");
-  const [appointments, setAppointments] = useState(mockAppointments);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+
+  useEffect(() => {
+    appointmentsDB.getAll().then(setAppointments);
+  }, []);
 
   const filteredAppointments = appointments.filter(
     (apt) => filter === "all" || apt.status === filter
   );
 
-  const handleCancel = (id: number) => {
-    setAppointments(appointments.map(apt => 
-      apt.id === id ? { ...apt, status: "cancelled" as const } : apt
-    ));
+  const handleCancel = async (id: string) => {
+    const apt = appointments.find(a => a.id === id);
+    if (apt) {
+      const updated = { ...apt, status: "cancelled" as const };
+      await appointmentsDB.update(updated);
+      setAppointments(appointments.map(a => a.id === id ? updated : a));
+    }
   };
 
   return (
@@ -103,7 +96,7 @@ const MyAppointments = () => {
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">
-                    {appointment.service}
+                    {appointment.serviceName}
                   </h3>
                   <span
                     className={cn(

@@ -32,10 +32,13 @@ const MyAppointments = () => {
     (apt) => filter === "all" || apt.status === filter
   );
 
-  const handleCancel = (id: number) => {
-    setAppointments(appointments.map(apt => 
-      apt.id === id ? { ...apt, status: "cancelled" as const } : apt
-    ));
+  const handleCancel = async (id: string) => {
+    const apt = appointments.find(a => a.id === id);
+    if (apt) {
+      const updated = { ...apt, status: "cancelled" as const };
+      await appointmentsDB.update(updated);
+      setAppointments(appointments.map(a => a.id === id ? updated : a));
+    }
   };
 
   return (

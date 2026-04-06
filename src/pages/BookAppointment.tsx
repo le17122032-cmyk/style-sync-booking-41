@@ -43,9 +43,21 @@ const BookAppointment = () => {
     if (step > 1) setStep(step - 1);
   };
 
-  const handleConfirm = () => {
-    // TODO: Implement booking confirmation
-    console.log("Booking:", { selectedService, selectedDate, selectedTime });
+  const handleConfirm = async () => {
+    if (!selectedServiceData || !selectedDate || !selectedTime) return;
+    const { appointmentsDB } = await import("@/lib/indexedDB");
+    const appointment = {
+      id: crypto.randomUUID(),
+      serviceId: selectedServiceData.id,
+      serviceName: selectedServiceData.name,
+      date: format(selectedDate, "d 'de' MMMM, yyyy", { locale: es }),
+      time: selectedTime,
+      status: "upcoming" as const,
+      price: selectedServiceData.price,
+      createdAt: new Date().toISOString(),
+    };
+    await appointmentsDB.save(appointment);
+    console.log("[IndexedDB] Appointment saved:", appointment.id);
     setStep(4);
   };
 

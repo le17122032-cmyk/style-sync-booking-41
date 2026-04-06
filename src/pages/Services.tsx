@@ -45,6 +45,14 @@ const Services = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Seed services to IndexedDB on mount
+  useEffect(() => {
+    const dbServices: DBService[] = services.map(({ id, name, category, duration, price, popular }) => ({
+      id, name, category, duration, price, popular,
+    }));
+    seedServicesIfEmpty(dbServices);
+  }, []);
+
   const filteredServices = services.filter((service) => {
     const matchesCategory = selectedCategory === "all" || service.category === selectedCategory;
     const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase());

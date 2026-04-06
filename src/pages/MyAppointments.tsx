@@ -12,22 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { appointmentsDB, type DBAppointment } from "@/lib/indexedDB";
 
-interface Appointment {
-  id: number;
-  service: string;
-  date: string;
-  time: string;
-  status: "upcoming" | "completed" | "cancelled";
-  price: number;
-}
-
-const mockAppointments: Appointment[] = [
-  { id: 1, service: "Corte de cabello", date: "15 de Febrero, 2026", time: "10:00", status: "upcoming", price: 350 },
-  { id: 2, service: "Manicure gel", date: "18 de Febrero, 2026", time: "14:30", status: "upcoming", price: 280 },
-  { id: 3, service: "Tinte completo", date: "5 de Febrero, 2026", time: "11:00", status: "completed", price: 800 },
-  { id: 4, service: "Pedicure spa", date: "28 de Enero, 2026", time: "16:00", status: "completed", price: 320 },
-  { id: 5, service: "Masaje relajante", date: "20 de Enero, 2026", time: "12:00", status: "cancelled", price: 600 },
-];
+type Appointment = DBAppointment;
 
 const statusConfig = {
   upcoming: { label: "Próxima", className: "bg-gold-light text-gold" },

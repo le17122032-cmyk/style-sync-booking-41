@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { Clock, ArrowRight, Search, Scissors, Sparkles, Heart, Star, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { seedServicesIfEmpty, type DBService } from "@/lib/indexedDB";
 
 const categories = [
   { id: "all", name: "Todos", icon: Sparkles },

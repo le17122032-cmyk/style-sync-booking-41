@@ -22,7 +22,11 @@ const statusConfig = {
 
 const MyAppointments = () => {
   const [filter, setFilter] = useState<"all" | "upcoming" | "completed" | "cancelled">("all");
-  const [appointments, setAppointments] = useState(mockAppointments);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+
+  useEffect(() => {
+    appointmentsDB.getAll().then(setAppointments);
+  }, []);
 
   const filteredAppointments = appointments.filter(
     (apt) => filter === "all" || apt.status === filter

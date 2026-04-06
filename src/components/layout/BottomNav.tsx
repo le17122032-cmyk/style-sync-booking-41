@@ -14,7 +14,7 @@ export function BottomNav() {
   const location = useLocation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 glass border-t border-border safe-area-pb">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 glass border-t border-border safe-area-pb" aria-label="Navegación principal">
       <div className="flex items-center justify-around py-2 px-4">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
@@ -22,6 +22,7 @@ export function BottomNav() {
             <Link
               key={item.path}
               to={item.path}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-200",
                 isActive
@@ -29,7 +30,7 @@ export function BottomNav() {
                   : "text-muted-foreground hover:text-primary"
               )}
             >
-              <item.icon className={cn("w-5 h-5", isActive && "animate-pulse-soft")} />
+              <item.icon className={cn("w-5 h-5", isActive && "animate-pulse-soft")} aria-hidden="true" />
               <span className="text-xs font-medium">{item.label}</span>
             </Link>
           );

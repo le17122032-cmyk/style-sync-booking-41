@@ -96,7 +96,7 @@ const MyAppointments = () => {
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">
-                    {appointment.service}
+                    {appointment.serviceName}
                   </h3>
                   <span
                     className={cn(

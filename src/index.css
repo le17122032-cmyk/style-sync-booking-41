@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -112,7 +112,7 @@
   }
 }
 
-/* Custom animations */
+/* Custom animations - use will-change for GPU acceleration */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -130,10 +130,12 @@
 
 .animate-fade-in {
   animation: fade-in 0.4s ease-out forwards;
+  will-change: opacity, transform;
 }
 
 .animate-slide-up {
   animation: slide-up 0.5s ease-out forwards;
+  will-change: opacity, transform;
 }
 
 .animate-pulse-soft {
@@ -163,4 +165,13 @@
 /* Typography */
 .font-display {
   font-family: 'Playfair Display', serif;
+}
+
+/* Safe area insets for PWA */
+.safe-area-pt {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }

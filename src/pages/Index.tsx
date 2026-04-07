@@ -89,8 +89,7 @@ const Index = () => {
             {features.map((feature, index) => (
               <article
                 key={feature.title}
-                className="bg-card rounded-2xl p-6 shadow-sm border border-border hover:shadow-lg transition-shadow duration-300 animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="bg-card rounded-2xl p-6 shadow-sm border border-border hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center mb-4" aria-hidden="true">
                   <feature.icon className="w-6 h-6 text-primary-foreground" />

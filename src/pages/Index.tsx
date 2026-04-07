@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Calendar, Clock, Star, Sparkles, ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-salon.jpg";
+import heroImage from "@/assets/hero-salon.webp";
 
 const features = [
   {

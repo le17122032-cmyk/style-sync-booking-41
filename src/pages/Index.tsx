@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Calendar, Clock, Star, Sparkles, ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-salon.jpg";
+import heroImage from "@/assets/hero-salon.webp";
 
 const features = [
   {
@@ -47,7 +47,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
         
         <div className="relative z-10 container px-4 py-12">
-          <div className="max-w-lg animate-slide-up">
+          <div className="max-w-lg" style={{ animation: 'slide-up 0.5s ease-out forwards' }}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-light text-gold mb-4">
               <Sparkles className="w-4 h-4" aria-hidden="true" />
               <span className="text-sm font-medium">Barbería & Salón de Belleza</span>
@@ -89,8 +89,7 @@ const Index = () => {
             {features.map((feature, index) => (
               <article
                 key={feature.title}
-                className="bg-card rounded-2xl p-6 shadow-sm border border-border hover:shadow-lg transition-shadow duration-300 animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="bg-card rounded-2xl p-6 shadow-sm border border-border hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center mb-4" aria-hidden="true">
                   <feature.icon className="w-6 h-6 text-primary-foreground" />

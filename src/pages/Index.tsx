@@ -47,7 +47,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
         
         <div className="relative z-10 container px-4 py-12">
-          <div className="max-w-lg animate-slide-up">
+          <div className="max-w-lg" style={{ animation: 'slide-up 0.5s ease-out forwards' }}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-light text-gold mb-4">
               <Sparkles className="w-4 h-4" aria-hidden="true" />
               <span className="text-sm font-medium">Barbería & Salón de Belleza</span>

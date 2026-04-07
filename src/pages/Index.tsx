@@ -40,6 +40,7 @@ const Index = () => {
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
           fetchPriority="high"
+          decoding="async"
           width={1200}
           height={800}
         />

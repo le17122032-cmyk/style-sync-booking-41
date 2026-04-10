@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Header } from "./Header";
 import { BottomNav } from "./BottomNav";
+import { OfflineBanner } from "@/components/OfflineBanner";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -12,6 +13,7 @@ export function PageLayout({ children, showHeader = true, showNav = true }: Page
   return (
     <div className="min-h-screen bg-background">
       {showHeader && <Header />}
+      <OfflineBanner />
       <main className={`${showHeader ? "pt-16" : ""} ${showNav ? "pb-20" : ""}`}>
         {children}
       </main>

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Calendar, Clock, Star, Sparkles, ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-salon.webp";
 
 const features = [
   {
@@ -32,22 +31,12 @@ const popularServices = [
 const Index = () => {
   return (
     <PageLayout>
-      {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
-        <img
-          src={heroImage}
-          alt="Interior de barbería y salón de belleza StyleSync"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-          width={1200}
-          height={800}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
-        
+      {/* Hero Section - CSS gradient instead of image for fast LCP */}
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-rose-light via-background to-gold-light">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80" />
+
         <div className="relative z-10 container px-4 py-12">
-          <div className="max-w-lg" style={{ animation: 'slide-up 0.5s ease-out forwards' }}>
+          <div className="max-w-lg">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-light text-gold mb-4">
               <Sparkles className="w-4 h-4" aria-hidden="true" />
               <span className="text-sm font-medium">Barbería & Salón de Belleza</span>
@@ -56,7 +45,7 @@ const Index = () => {
               Tu estilo perfecto, a un clic de distancia
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              StyleSync conecta barbería y salón de belleza en un solo lugar. 
+              StyleSync conecta barbería y salón de belleza en un solo lugar.
               Agenda tu corte, barba, tinte o tratamiento en segundos.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -86,7 +75,7 @@ const Index = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <article
                 key={feature.title}
                 className="bg-card rounded-2xl p-6 shadow-sm border border-border hover:shadow-lg transition-shadow duration-300"
@@ -163,7 +152,7 @@ const Index = () => {
               ¿Lista para lucir increíble?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Únete a miles de clientes satisfechas que confían en StyleSync 
+              Únete a miles de clientes satisfechas que confían en StyleSync
               para mantener su imagen impecable.
             </p>
             <Button variant="hero" size="xl" asChild>

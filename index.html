@@ -14,23 +14,20 @@
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Load fonts via link tags instead of CSS @import for better performance -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" /></noscript>
+    <!-- Async font loading - non-render-blocking -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" /></noscript>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://style-sync-booking-41.lovable.app" />
     <meta property="og:title" content="StyleSync - Barbería & Salón de Belleza" />
     <meta property="og:description" content="Agenda tu cita en tu barbería y salón de belleza favorito. Reserva cortes, tintes, manicure y más." />
-    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/80175756-b1b9-4a77-b234-488db32865ed/id-preview-56642440--9aa99d7e-9d09-482c-9ca2-dd9e416a6769.lovable.app-1770244046564.png" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="StyleSync - Barbería & Salón de Belleza" />
-    <meta name="twitter:description" content="Agenda tu cita en tu barbería y salón de belleza favorito. Reserva cortes, tintes, manicure y más." />
-    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/80175756-b1b9-4a77-b234-488db32865ed/id-preview-56642440--9aa99d7e-9d09-482c-9ca2-dd9e416a6769.lovable.app-1770244046564.png" />
+    <meta name="twitter:description" content="Agenda tu cita en tu barbería y salón de belleza favorito." />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://style-sync-booking-41.lovable.app" />
@@ -43,7 +40,6 @@
       "name": "StyleSync",
       "description": "Barbería y salón de belleza. Agenda tu cita en segundos.",
       "url": "https://style-sync-booking-41.lovable.app",
-      "image": "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/80175756-b1b9-4a77-b234-488db32865ed/id-preview-56642440--9aa99d7e-9d09-482c-9ca2-dd9e416a6769.lovable.app-1770244046564.png",
       "priceRange": "$$",
       "openingHours": "Mo-Sa 09:00-20:00"
     }
@@ -55,15 +51,15 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        const isInIframe = (() => { try { return window.self !== window.top; } catch(e) { return true; } })();
-        const isPreview = window.location.hostname.includes('id-preview--') || window.location.hostname.includes('lovableproject.com');
+        var isInIframe = (function() { try { return window.self !== window.top; } catch(e) { return true; } })();
+        var isPreview = window.location.hostname.includes('id-preview--') || window.location.hostname.includes('lovableproject.com');
         if (isPreview || isInIframe) {
-          navigator.serviceWorker.getRegistrations().then(r => r.forEach(reg => reg.unregister()));
+          navigator.serviceWorker.getRegistrations().then(function(r) { r.forEach(function(reg) { reg.unregister(); }); });
         } else {
-          window.addEventListener('load', () => {
+          window.addEventListener('load', function() {
             navigator.serviceWorker.register('/sw.js')
-              .then(reg => console.log('[SW] Registered:', reg.scope))
-              .catch(err => console.log('[SW] Registration failed:', err));
+              .then(function(reg) { console.log('[SW] Registered:', reg.scope); })
+              .catch(function(err) { console.log('[SW] Registration failed:', err); });
           });
         }
       }

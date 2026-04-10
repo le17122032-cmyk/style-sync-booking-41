@@ -90,8 +90,7 @@ const MyAppointments = () => {
           {filteredAppointments.map((appointment, index) => (
             <div
               key={appointment.id}
-              className="bg-card rounded-2xl border border-border p-4 animate-fade-in"
-              style={{ animationDelay: `${index * 50}ms` }}
+              className="bg-card rounded-2xl border border-border p-4"
             >
               <div className="flex items-start justify-between mb-3">
                 <div>

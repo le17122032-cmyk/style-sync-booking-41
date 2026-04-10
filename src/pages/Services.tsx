@@ -109,8 +109,7 @@ const Services = () => {
             <Link
               key={service.id}
               to={`/agendar?service=${service.id}`}
-              className="block bg-card rounded-2xl p-4 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-200 animate-fade-in"
-              style={{ animationDelay: `${index * 50}ms` }}
+              className="block bg-card rounded-2xl p-4 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div className="flex-1">

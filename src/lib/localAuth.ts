@@ -1,4 +1,4 @@
-import { openDB as openDatabase } from "@/lib/indexedDB";
+// Local user credentials store (separate IndexedDB database)
 
 export interface LocalUser {
   email: string;

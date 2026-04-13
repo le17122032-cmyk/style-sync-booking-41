@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import { Sparkles } from "lucide-react";
+import { Sparkles, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function Header() {
+  const { user, logout } = useAuth();
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border safe-area-pt" style={{ contain: 'layout style' }}>
       <div className="flex items-center justify-between px-4 py-3">
@@ -13,12 +16,24 @@ export function Header() {
             StyleSync
           </span>
         </Link>
-        <Link
-          to="/auth"
-          className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-        >
-          Iniciar sesión
-        </Link>
+        {user ? (
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-foreground">{user.name}</span>
+            <button
+              onClick={logout}
+              className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
+          </div>
+        ) : (
+          <Link
+            to="/auth"
+            className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+          >
+            Iniciar sesión
+          </Link>
+        )}
       </div>
     </header>
   );

@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Calendar, Scissors, User, LayoutDashboard } from "lucide-react";
+import { Home, Calendar, Scissors, User, Image } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { path: "/", icon: Home, label: "Inicio" },
   { path: "/servicios", icon: Scissors, label: "Servicios" },
   { path: "/agendar", icon: Calendar, label: "Agendar" },
+  { path: "/galeria", icon: Image, label: "Galería" },
   { path: "/mis-citas", icon: User, label: "Mis Citas" },
-  { path: "/panel", icon: LayoutDashboard, label: "Panel" },
 ];
 
 export function BottomNav() {

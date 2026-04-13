@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Calendar, Clock, Star, Sparkles, ArrowRight } from "lucide-react";
+import heroImg from "@/assets/hero-salon.jpg";
+import barberImg from "@/assets/service-barber.jpg";
+import hairImg from "@/assets/service-hair.jpg";
+import nailsImg from "@/assets/service-nails.jpg";
+import spaImg from "@/assets/service-spa.jpg";
 
 const features = [
   {
@@ -28,12 +33,27 @@ const popularServices = [
   { name: "Manicure", duration: "30 min", price: "$180", category: "Salón" },
 ];
 
+const categoryImages = [
+  { src: barberImg, label: "Barbería", link: "/servicios?cat=barber" },
+  { src: hairImg, label: "Cabello", link: "/servicios?cat=hair" },
+  { src: nailsImg, label: "Uñas", link: "/servicios?cat=nails" },
+  { src: spaImg, label: "Spa", link: "/servicios?cat=spa" },
+];
+
 const Index = () => {
   return (
     <PageLayout>
-      {/* Hero Section - CSS gradient instead of image for fast LCP */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-rose-light via-background to-gold-light">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80" />
+      {/* Hero Section with image */}
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        <img
+          src={heroImg}
+          alt="Interior de salón de belleza moderno"
+          width={1280}
+          height={720}
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
 
         <div className="relative z-10 container px-4 py-12">
           <div className="max-w-lg">
@@ -59,6 +79,42 @@ const Index = () => {
                 <Link to="/servicios">Ver servicios</Link>
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Category Images Section */}
+      <section className="py-16 px-4" aria-label="Categorías de servicios">
+        <div className="container">
+          <div className="text-center mb-10">
+            <h2 className="font-display text-3xl font-bold text-foreground mb-3">
+              Nuestras categorías
+            </h2>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Explora nuestros servicios por categoría
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {categoryImages.map((cat) => (
+              <Link
+                key={cat.label}
+                to={cat.link}
+                className="group relative aspect-square rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+              >
+                <img
+                  src={cat.src}
+                  alt={cat.label}
+                  width={640}
+                  height={640}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
+                <span className="absolute bottom-4 left-4 text-lg font-semibold text-primary-foreground">
+                  {cat.label}
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -141,6 +197,24 @@ const Index = () => {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* Gallery Preview */}
+      <section className="py-16 px-4" aria-label="Galería de trabajos">
+        <div className="container text-center">
+          <h2 className="font-display text-3xl font-bold text-foreground mb-3">
+            Nuestros trabajos
+          </h2>
+          <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+            Conoce los resultados que nuestros profesionales logran cada día
+          </p>
+          <Button variant="hero" size="xl" asChild>
+            <Link to="/galeria">
+              Ver galería
+              <ArrowRight className="w-5 h-5 ml-1" aria-hidden="true" />
+            </Link>
+          </Button>
         </div>
       </section>
 

@@ -9,6 +9,18 @@ import { fetchServices } from "@/lib/dataSync";
 import { useOnlineStatus } from "@/hooks/use-online-status";
 import type { DBService } from "@/lib/indexedDB";
 
+import barberImg from "@/assets/service-barber.jpg";
+import hairImg from "@/assets/service-hair.jpg";
+import nailsImg from "@/assets/service-nails.jpg";
+import spaImg from "@/assets/service-spa.jpg";
+
+const categoryImages: Record<string, string> = {
+  barber: barberImg,
+  hair: hairImg,
+  nails: nailsImg,
+  spa: spaImg,
+};
+
 const categories = [
   { id: "all", name: "Todos", icon: Sparkles },
   { id: "barber", name: "Barbería", icon: User },
@@ -80,7 +92,7 @@ const Services = () => {
         {loading ? (
           <div className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-card rounded-2xl p-4 border border-border animate-pulse h-20" />
+              <div key={i} className="bg-card rounded-2xl p-4 border border-border animate-pulse h-24" />
             ))}
           </div>
         ) : (
@@ -89,9 +101,19 @@ const Services = () => {
               <Link
                 key={service.id}
                 to={`/agendar?service=${service.id}`}
-                className="block bg-card rounded-2xl p-4 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-200"
+                className="flex bg-card rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-200 overflow-hidden"
               >
-                <div className="flex items-center justify-between">
+                <div className="w-20 h-20 flex-shrink-0">
+                  <img
+                    src={categoryImages[service.category] || barberImg}
+                    alt={service.category}
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex items-center justify-between flex-1 p-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-medium text-foreground">{service.name}</h3>
